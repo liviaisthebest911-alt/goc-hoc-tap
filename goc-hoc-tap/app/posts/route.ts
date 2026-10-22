@@ -1,5 +1,12 @@
 import { NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase";
+import { createClient } from "@supabase/supabase-js";
+export const dynamic = "force-dynamic";
+
+function createAdminClient() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  return url && serviceRoleKey ? createClient(url, serviceRoleKey) : null;
+}
 
 export async function POST(req: Request) {
   const { passcode, title, tag, body } = await req.json();
@@ -11,7 +18,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Thiếu tiêu đề hoặc nội dung" }, { status: 400 });
   }
 
-  const { error } = await supabaseAdmin()
+  const supabase = createAdminClient();
+  if (!supabase) {
+    return NextResponse.json({ error: "Cấu hình Supabase chưa đầy đủ" }, { status: 500 });
+  }
+
+  const { error } = await supabase
     .from("posts")
     .insert({ title: title.trim(), tag: tag?.trim() || null, body });
 
