@@ -15,12 +15,11 @@ export default async function Home() {
     <>
       <section className="hero">
         <div>
-          <h1>Chào bạn, mình là Minh Anh.</h1>
+          <h1>Hello, I'm Liu June Máth.</h1>
           <p>
-            Mình đang học khoa học máy tính, toán và violin. Ở đây mình ghi lại
-            những gì mới hiểu ra, theo cách dễ đọc nhất có thể.
+
           </p>
-          <Link href="/#ve-toi" className="btn">Về hành trình của mình</Link>
+          <Link href="/aboutme" className="btn">Explore my journey</Link>
         </div>
         <Violin className="violin" />
       </section>
@@ -40,12 +39,11 @@ export default async function Home() {
 
       <StaffDivider />
 
-      <section id="ve-toi">
+      <section id="About Me">
         <h2 style={{ fontSize: 40 }}>Về tôi</h2>
         <p className="muted" style={{ maxWidth: "56ch" }}>
-          Mình là sinh viên, thích học chậm và ghi lại cẩn thận. Ngoài giờ học,
-          mình tập violin mỗi tối. Kỹ năng: HTML, CSS, JavaScript, Python.
-          Đang nghiên cứu: cấu trúc dữ liệu, giải tích, xác suất.
+          Learning, building, and growing — one step at a time.
+This is my little corner of the internet, where I document what I learn, share ideas, and keep track of the things I'm building along the way.
         </p>
       </section>
     </>
