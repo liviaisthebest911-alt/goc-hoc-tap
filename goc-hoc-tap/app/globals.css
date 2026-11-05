@@ -486,3 +486,11 @@ a.tag:hover { background: rgba(140, 155, 126, .5); color: var(--brown); }
   * { transition: none !important; animation: none !important; }
   .tilt { transform: none; }
 }
+
+/* Liu's Book: quản trị */
+.form label.check { display: flex; align-items: center; gap: 10px; color: var(--brown); }
+.form label.check input { width: 18px; height: 18px; flex: none; accent-color: var(--burgundy); }
+.chapters { margin-top: 48px; }
+.chapters h2 { margin: 0; font-size: 24px; }
+.chapter-list { list-style: none; counter-reset: none; }
+.admin-actions .link:disabled { opacity: .35; cursor: not-allowed; }

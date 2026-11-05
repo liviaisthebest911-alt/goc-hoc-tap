@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PenLine } from "lucide-react";
+import { BookOpen, PenLine } from "lucide-react";
 import DeletePostButton from "@/components/DeletePostButton";
 import LogoutButton from "@/components/LogoutButton";
 import { requireAdmin } from "@/lib/auth";
@@ -20,6 +20,9 @@ export default async function AdminPage() {
         <div className="form-actions">
           <Link href="/write" className="btn">
             <PenLine size={16} strokeWidth={1.5} /> Viết bài mới
+          </Link>
+          <Link href="/admin/books" className="btn ghost">
+            <BookOpen size={16} strokeWidth={1.5} /> Liu&apos;s Book
           </Link>
           <LogoutButton />
         </div>
