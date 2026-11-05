@@ -30,11 +30,11 @@ export default async function TopicPage({ params }: Props) {
   if (matching.length === 0) notFound();
 
   return (
-    <div className="page">
+    <div className="page wide">
       <p className="eyebrow">Chủ đề</p>
       <h1>{tag}</h1>
       <TopicList topics={listTopics(posts)} active={tag} />
-      <section className="post-list">
+      <section className="cards">
         {matching.map((post) => <PostCard key={post.id} post={post} />)}
       </section>
     </div>
