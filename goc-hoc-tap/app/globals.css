@@ -183,7 +183,8 @@ button:disabled { cursor: default; opacity: .6; }
 .keys-slot { left: 0; bottom: 0; width: 236px; }
 .star-slot { left: 56px; top: 12px; }
 .notes-slot { right: 0; bottom: 70px; }
-.brace-slot { left: 14px; top: 140px; }
+.brace-slot { left: 6px; top: 214px; }
+.mascot-slot { left: 6px; top: 62px; width: 150px; z-index: 1; }
 .tag-slot { right: 34px; bottom: -6px; }
 .float { animation: float 8s ease-in-out infinite; }
 .float.slow { animation-duration: 10s; animation-delay: -3s; }
@@ -198,6 +199,21 @@ button:disabled { cursor: default; opacity: .6; }
 .notes-slot .doodle { width: 34px; color: var(--rose); }
 .glyph { font-family: var(--code); font-size: 34px; line-height: 1; color: var(--rose); opacity: .6; }
 .glyph.small { font-size: 22px; }
+
+/* Mascot: chân dung nhỏ trên khung hồng nhạt, hạ bão hòa để hợp bảng màu */
+.mascot {
+  overflow: hidden;
+  border: 1px solid var(--pink-blush);
+  border-radius: 28px 28px 18px 18px;
+  background: var(--pink-soft);
+  box-shadow: var(--shadow);
+  line-height: 0;
+}
+.mascot-img { display: block; width: 100%; height: auto; filter: saturate(.78) sepia(.06); }
+.mascot-hero { width: 150px; }
+.mascot-about { width: 150px; flex: none; transform: rotate(3deg); }
+.about-row { display: flex; align-items: flex-end; gap: 28px; }
+.about-row .about-sheet { flex: 0 1 640px; }
 
 /* Violin: vĩ trượt, dây rung khi rê chuột */
 .violin .bow { transition: transform .9s cubic-bezier(.3, .8, .3, 1); }
@@ -460,6 +476,9 @@ a.tag:hover { background: var(--pink-blush); color: var(--ink); }
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; padding-top: 24px; }
   .hero-art { max-width: 340px; margin: 8px auto 0; }
+  .about-row { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .about-row .about-sheet { flex: none; width: 100%; }
+  .mascot-about { width: 120px; margin-left: 24px; }
   .cards { grid-template-columns: 1fr; gap: 20px; }
   .post-card.featured { padding: 32px 30px 28px; }
 }
@@ -472,6 +491,7 @@ a.tag:hover { background: var(--pink-blush); color: var(--ink); }
   .brand { font-size: 22px; }
   .hero-tagline { font-size: 18px; margin: 18px 0 26px; }
   .hero-art { zoom: .8; margin-top: 0; }
+  .mascot-about { display: none; }
   .section { padding-top: 72px; }
   .site-footer { margin-top: 80px; padding-top: 64px; }
   .about-sheet { padding: 32px 24px 36px; }

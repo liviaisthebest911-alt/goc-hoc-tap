@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Mascot, { MASCOTS } from "./Mascot";
 import { HeroScore, Notes, PianoKeys, Star, Violin } from "./Art";
 
 /*
@@ -18,6 +19,9 @@ export default function Hero() {
       </div>
 
       <div className="hero-art" aria-hidden="true">
+        <div className="art-slot mascot-slot" data-depth="10">
+          <div className="float slow"><Mascot src={MASCOTS.reader} className="mascot-hero" /></div>
+        </div>
         <div className="art-slot violin-slot" data-depth="16">
           <div className="float">
             <Violin className="violin" />
