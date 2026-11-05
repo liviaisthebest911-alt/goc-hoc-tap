@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import PostCard from "@/components/PostCard";
+import Mascot, { MASCOTS } from "@/components/Mascot";
 import Reveal from "@/components/Reveal";
 import TopicList from "@/components/TopicList";
 import { Book, Star } from "@/components/Art";
@@ -34,7 +35,7 @@ export default async function Home() {
       </section>
 
       <section id="ve-toi" className="section">
-        <Reveal>
+        <Reveal className="about-row">
           <div className="about-sheet">
             <Star className="doodle about-star" />
             <h2>Về tôi</h2>
@@ -44,6 +45,7 @@ export default async function Home() {
             </p>
             <Book className="doodle about-book" />
           </div>
+          <Mascot src={MASCOTS.buddy} className="mascot-about" />
         </Reveal>
       </section>
     </>
