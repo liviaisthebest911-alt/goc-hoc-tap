@@ -1,17 +1,28 @@
 import type { Metadata } from "next";
-import { EB_Garamond, Plus_Jakarta_Sans } from "next/font/google";
+import { Patrick_Hand, Fraunces, JetBrains_Mono, Newsreader } from "next/font/google";
 import Link from "next/link";
+import CursorFX from "../components/CursorFX";
 import Header from "../components/Header";
 import "./globals.css";
 
-const serif = EB_Garamond({
+const display = Fraunces({
   subsets: ["latin", "vietnamese"],
-  weight: ["500", "600"],
-  variable: "--font-serif",
+  axes: ["opsz", "SOFT"],
+  variable: "--font-display",
 });
-const sans = Plus_Jakarta_Sans({
+const body = Newsreader({
   subsets: ["latin", "vietnamese"],
-  variable: "--font-sans",
+  style: ["normal", "italic"],
+  variable: "--font-body",
+});
+const hand = Patrick_Hand({
+  subsets: ["latin", "vietnamese"],
+  weight: "400",
+  variable: "--font-hand",
+});
+const mono = JetBrains_Mono({
+  subsets: ["latin", "vietnamese"],
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
@@ -21,8 +32,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="vi" className={`${serif.variable} ${sans.variable}`}>
+    <html
+      lang="vi"
+      className={`${display.variable} ${body.variable} ${hand.variable} ${mono.variable}`}
+    >
       <body>
+        <CursorFX />
         <Header />
         <main className="wrap">{children}</main>
         <footer className="site-footer">

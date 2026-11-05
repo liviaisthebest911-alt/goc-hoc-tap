@@ -1,7 +1,8 @@
-import Link from "next/link";
+import Hero from "@/components/Hero";
 import PostCard from "@/components/PostCard";
+import Reveal from "@/components/Reveal";
 import TopicList from "@/components/TopicList";
-import { Violin } from "@/components/Art";
+import { Book, Star } from "@/components/Art";
 import { listPosts, listTopics } from "@/lib/posts";
 
 export const revalidate = 60;
@@ -11,21 +12,21 @@ export default async function Home() {
 
   return (
     <>
-      <section className="hero">
-        <div>
-          <h1>Hello, I&apos;m Liu June Máth.</h1>
-          <p>Learning, building, and growing — one step at a time.</p>
-          <Link href="/#ve-toi" className="btn">Explore my journey</Link>
-        </div>
-        <Violin className="violin" />
-      </section>
+      <Hero />
 
       <section id="bai-viet" className="section">
-        <h2>Bài viết</h2>
+        <div className="section-head">
+          <h2>Bài viết</h2>
+          <span className="hand">viết chậm, học kỹ</span>
+        </div>
         <TopicList topics={listTopics(posts)} />
         {posts.length > 0 ? (
-          <div className="post-list">
-            {posts.map((post) => <PostCard key={post.id} post={post} />)}
+          <div className="cards">
+            {posts.map((post, i) => (
+              <Reveal key={post.id} className={i === 0 ? "featured-slot" : ""} delay={i > 0 ? (i % 2) * 90 : 0}>
+                <PostCard post={post} featured={i === 0} />
+              </Reveal>
+            ))}
           </div>
         ) : (
           <p className="empty">Chưa có bài viết nào.</p>
@@ -33,11 +34,17 @@ export default async function Home() {
       </section>
 
       <section id="ve-toi" className="section">
-        <h2>Về tôi</h2>
-        <p className="muted about">
-          This is my little corner of the internet, where I document what I learn, share ideas,
-          and keep track of the things I&apos;m building along the way.
-        </p>
+        <Reveal>
+          <div className="about-sheet">
+            <Star className="doodle about-star" />
+            <h2>Về tôi</h2>
+            <p className="about">
+              This is my little corner of the internet, where I document what I learn, share ideas,
+              and keep track of the things I&apos;m building along the way.
+            </p>
+            <Book className="doodle about-book" />
+          </div>
+        </Reveal>
       </section>
     </>
   );
