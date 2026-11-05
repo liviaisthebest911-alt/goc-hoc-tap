@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Patrick_Hand, Fraunces, JetBrains_Mono, Newsreader } from "next/font/google";
+import { Fraunces, JetBrains_Mono, Newsreader } from "next/font/google";
 import Link from "next/link";
 import CursorFX from "../components/CursorFX";
 import Header from "../components/Header";
@@ -15,11 +15,6 @@ const body = Newsreader({
   style: ["normal", "italic"],
   variable: "--font-body",
 });
-const hand = Patrick_Hand({
-  subsets: ["latin", "vietnamese"],
-  weight: "400",
-  variable: "--font-hand",
-});
 const mono = JetBrains_Mono({
   subsets: ["latin", "vietnamese"],
   variable: "--font-mono",
@@ -34,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="vi"
-      className={`${display.variable} ${body.variable} ${hand.variable} ${mono.variable}`}
+      className={`${display.variable} ${body.variable} ${mono.variable}`}
     >
       <body>
         <CursorFX />

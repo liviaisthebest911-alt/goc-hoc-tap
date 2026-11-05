@@ -6,7 +6,7 @@ import { useRef, type PointerEvent, type ReactNode } from "react";
 export default function Tilt({
   children,
   className = "",
-  max = 5,
+  max = 2.5,
 }: {
   children: ReactNode;
   className?: string;

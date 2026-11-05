@@ -114,7 +114,7 @@ export function HeroScore({ className }: Props) {
                 rx={6.6}
                 ry={4.6}
                 transform={`rotate(-20 ${x} ${y})`}
-                fill={bit === "1" ? "currentColor" : "var(--ivory)"}
+                fill={bit === "1" ? "currentColor" : "var(--bg)"}
               />
             </g>
             <text className="score-bit" x={x} y={92} textAnchor="middle">{bit}</text>

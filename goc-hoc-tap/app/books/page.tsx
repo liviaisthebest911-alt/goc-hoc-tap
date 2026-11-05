@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 import { listBooks } from "@/lib/books";
 
 export const revalidate = 60;
@@ -24,12 +25,11 @@ export default async function BooksPage() {
         <p className="lib-empty">Chưa có truyện nào được đăng.</p>
       ) : (
         <ul className="lib-books">
-          {books.map((book, index) => (
+          {books.map((book) => (
             <li key={book.id}>
               <Link href={`/books/${book.id}`}>
-                <span className="lib-no" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
                 <span className="lib-title">{book.title}</span>
-                <span className="lib-arrow" aria-hidden="true">→</span>
+                <ChevronRight className="lib-arrow" size={18} strokeWidth={1.5} aria-hidden="true" />
               </Link>
             </li>
           ))}
