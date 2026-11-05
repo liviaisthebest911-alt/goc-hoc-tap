@@ -11,6 +11,7 @@ export default function Header() {
         </Link>
         <nav className="nav">
           <Link href="/#bai-viet">Góc học tập</Link>
+          <Link href="/books">Liu&apos;s Book</Link>
           <Link href="/#ve-toi">Về tôi</Link>
         </nav>
       </div>
