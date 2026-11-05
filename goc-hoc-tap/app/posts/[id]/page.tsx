@@ -1,41 +1,40 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { ChevronLeft } from "lucide-react";
-import { supabase } from "@/lib/supabase";
-import { StaffDivider } from "@/components/Art";
-import { fmtDate, readMinutes } from "@/lib/utils";
+import Markdown from "@/components/Markdown";
+import { getPost } from "@/lib/posts";
+import { excerpt, fmtDate, readMinutes, topicHref } from "@/lib/utils";
 
 export const revalidate = 60;
 
-export default async function PostPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+type Props = { params: Promise<{ id: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const post = await getPost((await params).id);
+  return post ? { title: post.title, description: excerpt(post.body) } : {};
+}
+
+export default async function PostPage({ params }: Props) {
   const { id } = await params;
-  const { data: post } = await supabase
-    .from("posts").select("*").eq("id", id).single();
+  const post = await getPost(id);
 
   if (!post) notFound();
 
   return (
     <article className="article">
-      <Link href="/" className="muted">
-        <ChevronLeft size={18} strokeWidth={1.25} style={{ verticalAlign: "-4px" }} />
-        Về danh sách
+      <Link href="/#bai-viet" className="back">
+        <ChevronLeft size={16} strokeWidth={1.5} /> Về danh sách
       </Link>
-      <div className="meta" style={{ marginTop: 14 }}>
-        <span className="pill">{post.tag || "Chưa phân loại"}</span>
-        <span>{fmtDate(post.created_at)}</span>
-        <span>{readMinutes(post.body)} phút đọc</span>
-      </div>
-      <h1>{post.title}</h1>
-      <StaffDivider small />
-      <div className="md">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.body}</ReactMarkdown>
-      </div>
+      <header>
+        <div className="meta">
+          {post.tag && <Link href={topicHref(post.tag)} className="tag">{post.tag}</Link>}
+          <time dateTime={post.created_at}>{fmtDate(post.created_at)}</time>
+          <span>{readMinutes(post.body)} phút đọc</span>
+        </div>
+        <h1>{post.title}</h1>
+      </header>
+      <Markdown>{post.body}</Markdown>
     </article>
   );
 }

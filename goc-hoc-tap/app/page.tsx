@@ -1,49 +1,42 @@
 import Link from "next/link";
-import { supabase } from "@/lib/supabase";
 import PostCard from "@/components/PostCard";
-import { StaffDivider, Violin, SheetMusic } from "@/components/Art";
+import TopicList from "@/components/TopicList";
+import { Violin } from "@/components/Art";
+import { listPosts, listTopics } from "@/lib/posts";
 
 export const revalidate = 60;
 
 export default async function Home() {
-  const { data: posts } = await supabase
-    .from("posts")
-    .select("*")
-    .order("created_at", { ascending: false });
+  const posts = await listPosts();
 
   return (
     <>
       <section className="hero">
         <div>
-          <h1>Hello, I'm Liu June Máth.</h1>
-          <p>
-
-          </p>
-          <Link href="/aboutme" className="btn">Explore my journey</Link>
+          <h1>Hello, I&apos;m Liu June Máth.</h1>
+          <p>Learning, building, and growing — one step at a time.</p>
+          <Link href="/#ve-toi" className="btn">Explore my journey</Link>
         </div>
         <Violin className="violin" />
       </section>
 
-      <StaffDivider />
-
-      <section>
-        {posts && posts.length > 0 ? (
-          posts.map((p) => <PostCard key={p.id} post={p} />)
-        ) : (
-          <div className="empty">
-            <SheetMusic className="" />
-            <p>Chưa có bài viết nào. Hãy viết bài đầu tiên.</p>
+      <section id="bai-viet" className="section">
+        <h2>Bài viết</h2>
+        <TopicList topics={listTopics(posts)} />
+        {posts.length > 0 ? (
+          <div className="post-list">
+            {posts.map((post) => <PostCard key={post.id} post={post} />)}
           </div>
+        ) : (
+          <p className="empty">Chưa có bài viết nào.</p>
         )}
       </section>
 
-      <StaffDivider />
-
-      <section id="About Me">
-        <h2 style={{ fontSize: 40 }}>Về tôi</h2>
-        <p className="muted" style={{ maxWidth: "56ch" }}>
-          Learning, building, and growing — one step at a time.
-This is my little corner of the internet, where I document what I learn, share ideas, and keep track of the things I'm building along the way.
+      <section id="ve-toi" className="section">
+        <h2>Về tôi</h2>
+        <p className="muted about">
+          This is my little corner of the internet, where I document what I learn, share ideas,
+          and keep track of the things I&apos;m building along the way.
         </p>
       </section>
     </>
