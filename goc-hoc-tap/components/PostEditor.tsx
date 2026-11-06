@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, type ClipboardEvent, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Eye, PenLine, Send } from "lucide-react";
@@ -24,6 +24,49 @@ export default function PostEditor({ post, initialDate, topics }: Props) {
   const [error, setError] = useState("");
   const [sessionExpired, setSessionExpired] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [uploading, setUploading] = useState(0);
+
+  // Ctrl+V ảnh: chèn placeholder tại con trỏ, upload xong thì thay bằng URL thật.
+  async function onPaste(event: ClipboardEvent<HTMLTextAreaElement>) {
+    const files = Array.from(event.clipboardData.files).filter((f) => f.type.startsWith("image/"));
+    if (files.length === 0) return;
+    event.preventDefault();
+    setError("");
+
+    const el = event.currentTarget;
+    const start = el.selectionStart;
+    const end = el.selectionEnd;
+    const stamp = Date.now();
+    const marks = files.map((_, i) => `![Đang tải ảnh ${stamp}-${i}…]()`);
+    const insert = marks.join("\n\n");
+    setBody((cur) => cur.slice(0, start) + insert + cur.slice(end));
+    requestAnimationFrame(() => {
+      el.focus();
+      el.setSelectionRange(start + insert.length, start + insert.length);
+    });
+
+    setUploading((n) => n + files.length);
+    await Promise.all(
+      files.map(async (file, i) => {
+        let md = "";
+        try {
+          const form = new FormData();
+          form.append("file", file);
+          const res = await fetch("/api/uploads", { method: "POST", body: form });
+          const data = await res.json().catch(() => null);
+          if (res.ok) md = `![](${data.url})`;
+          else {
+            setSessionExpired(res.status === 401);
+            setError(data?.error || "Không tải được ảnh lên");
+          }
+        } catch {
+          setError("Không kết nối được máy chủ");
+        }
+        setBody((cur) => cur.replace(marks[i], md));
+        setUploading((n) => n - 1);
+      }),
+    );
+  }
 
   async function save(event: FormEvent) {
     event.preventDefault();
@@ -102,7 +145,11 @@ export default function PostEditor({ post, initialDate, topics }: Props) {
             placeholder="## Tiêu đề, **đậm**, - danh sách, ```code```"
             value={body}
             onChange={(e) => setBody(e.target.value)}
+            onPaste={onPaste}
           />
+          <span className="muted">
+            {uploading > 0 ? "Đang tải ảnh lên…" : "Dán ảnh (Ctrl+V) vào bất kỳ vị trí nào để chèn."}
+          </span>
         </label>
       )}
 
@@ -124,7 +171,7 @@ export default function PostEditor({ post, initialDate, topics }: Props) {
           {preview ? <PenLine size={16} strokeWidth={1.5} /> : <Eye size={16} strokeWidth={1.5} />}
           {preview ? "Quay lại soạn" : "Xem trước"}
         </button>
-        <button className="btn" disabled={busy}>
+        <button className="btn" disabled={busy || uploading > 0}>
           <Send size={16} strokeWidth={1.5} />
           {busy ? "Đang lưu…" : post ? "Lưu thay đổi" : "Đăng bài"}
         </button>
