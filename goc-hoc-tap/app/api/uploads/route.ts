@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
+import { misconfigured, unauthorized } from "@/lib/admin-api";
 import { isAdmin } from "@/lib/auth";
+import { MAX_IMAGE_BYTES } from "@/lib/post-input";
 import { createAdminClient } from "@/lib/supabase-admin";
 
 const BUCKET = "post-images";
-const MAX_BYTES = 5 * 1024 * 1024;
 const EXT: Record<string, string> = {
   "image/png": "png",
   "image/jpeg": "jpg",
@@ -12,9 +13,7 @@ const EXT: Record<string, string> = {
 };
 
 export async function POST(req: Request) {
-  if (!(await isAdmin())) {
-    return NextResponse.json({ error: "Phiên đăng nhập đã hết hạn" }, { status: 401 });
-  }
+  if (!(await isAdmin())) return unauthorized();
 
   const form = await req.formData().catch(() => null);
   const file = form?.get("file");
@@ -25,14 +24,12 @@ export async function POST(req: Request) {
   if (!ext) {
     return NextResponse.json({ error: "Chỉ hỗ trợ ảnh PNG, JPG, GIF, WebP" }, { status: 400 });
   }
-  if (file.size > MAX_BYTES) {
-    return NextResponse.json({ error: "Ảnh quá lớn (tối đa 5MB)" }, { status: 413 });
+  if (file.size > MAX_IMAGE_BYTES) {
+    return NextResponse.json({ error: "Ảnh quá lớn (tối đa 4MB)" }, { status: 413 });
   }
 
   const supabase = createAdminClient();
-  if (!supabase) {
-    return NextResponse.json({ error: "Cấu hình Supabase chưa đầy đủ" }, { status: 500 });
-  }
+  if (!supabase) return misconfigured();
 
   const path = `${new Date().getFullYear()}/${crypto.randomUUID()}.${ext}`;
   const upload = () =>

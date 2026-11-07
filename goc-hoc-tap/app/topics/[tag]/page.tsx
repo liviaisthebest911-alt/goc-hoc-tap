@@ -31,8 +31,7 @@ export default async function TopicPage({ params }: Props) {
 
   return (
     <div className="page wide">
-      <p className="eyebrow">Chủ đề</p>
-      <h1>{tag}</h1>
+      <h1>Chủ đề: {tag}</h1>
       <TopicList topics={listTopics(posts)} active={tag} />
       <section className="cards">
         {matching.map((post) => <PostCard key={post.id} post={post} />)}

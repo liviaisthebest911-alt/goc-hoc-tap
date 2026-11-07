@@ -11,6 +11,11 @@ create table if not exists public.posts (
 create index if not exists posts_created_at_idx on public.posts (created_at desc);
 create index if not exists posts_tag_idx on public.posts (tag);
 
+-- RLS không chặn TRUNCATE, nên anon và authenticated chỉ được cấp quyền đọc.
+revoke all on public.posts from anon, authenticated;
+grant select on public.posts to anon, authenticated;
+grant select, insert, update, delete on public.posts to service_role;
+
 -- Khóa anon chỉ được đọc. Khóa này công khai trên trình duyệt, nên nếu không bật
 -- RLS thì ai cũng có thể sửa hoặc xóa bài trực tiếp qua API của Supabase.
 -- Service role bỏ qua RLS, nên các thao tác của Admin qua app vẫn hoạt động.

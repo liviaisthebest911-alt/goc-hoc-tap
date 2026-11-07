@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { TrebleClef } from "./Art";
+import SiteNav from "./SiteNav";
 
 export default function Header() {
   return (
@@ -9,11 +10,7 @@ export default function Header() {
           <TrebleClef className="" />
           OJM
         </Link>
-        <nav className="nav">
-          <Link href="/#bai-viet">Góc học tập</Link>
-          <Link href="/books">Liu&apos;s Book</Link>
-          <Link href="/#ve-toi">Về tôi</Link>
-        </nav>
+        <SiteNav />
       </div>
     </header>
   );

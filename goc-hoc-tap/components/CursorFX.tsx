@@ -37,7 +37,6 @@ type Particle = {
   ch: string;
 };
 
-const COLORS = ["#D995AC", "#C98199", "#B8738C"];
 const MAX_PARTICLES = 10;
 const SPAWN_EVERY = 160; // px di chuyển giữa hai lần xét sinh hạt
 const SPAWN_CHANCE = 0.55;
@@ -64,8 +63,8 @@ export default function CursorFX() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pathname = usePathname();
   const depthEls = useRef<HTMLElement[]>([]);
-  // Không dựng hiệu ứng ở khu quản trị, soạn bài và trang đọc chương để không phân tâm.
-  const quiet = /^\/(admin|write|books\/[^/]+\/[^/]+)/.test(pathname);
+  // Không dựng hiệu ứng ở khu quản trị, soạn bài và các trang đọc để không phân tâm.
+  const quiet = /^\/(admin|write|posts|books\/[^/]+\/[^/]+)/.test(pathname);
 
   // Tìm lại các phần tử parallax mỗi khi đổi trang.
   useEffect(() => {
@@ -78,6 +77,8 @@ export default function CursorFX() {
     const ctx = canvas?.getContext("2d");
     if (!enabled || quiet || !root || !canvas || !ctx) return;
 
+    const styles = getComputedStyle(document.documentElement);
+    const colors = ["--rose", "--rose-ink"].map((token) => styles.getPropertyValue(token).trim());
     const monoFamily =
       getComputedStyle(document.body).getPropertyValue("--font-mono").trim() || "monospace";
     const target = { x: innerWidth * 0.62, y: innerHeight * 0.38 };
@@ -115,7 +116,7 @@ export default function CursorFX() {
         vr: (Math.random() - 0.5) * 0.5,
         phase: Math.random() * Math.PI * 2,
         kind: isNote ? "note" : "bit",
-        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        color: colors[Math.floor(Math.random() * colors.length)],
         ch: Math.random() < 0.5 ? "0" : "1",
       });
     };

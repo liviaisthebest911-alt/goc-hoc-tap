@@ -5,13 +5,16 @@ import { isUuid, type Book, type Chapter } from "@/lib/book-input";
 export type { Book, Chapter };
 
 /** Đọc công khai bằng anon key. RLS chỉ trả truyện đã xuất bản và chương của chúng. */
-export async function listBooks(): Promise<Book[]> {
+export async function listBooks(): Promise<(Book & { chapter_count: number })[]> {
   const { data, error } = await supabase
     .from("books")
-    .select("*")
+    .select("*, book_chapters(count)")
     .order("created_at", { ascending: false });
   if (error) throw new Error(`Không tải được danh sách truyện: ${error.message}`);
-  return data;
+  return data.map(({ book_chapters, ...book }) => ({
+    ...book,
+    chapter_count: book_chapters[0]?.count ?? 0,
+  }));
 }
 
 export const getBook = cache(async (id: string): Promise<Book | null> => {

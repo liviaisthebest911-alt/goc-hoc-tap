@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
+import { misconfigured, notFound, unauthorized } from "@/lib/admin-api";
 import { isAdmin } from "@/lib/auth";
 import { parsePostInput } from "@/lib/post-input";
 import { createAdminClient } from "@/lib/supabase-admin";
@@ -7,12 +8,6 @@ import { createAdminClient } from "@/lib/supabase-admin";
 type Context = { params: Promise<{ id: string }> };
 
 const INVALID_TEXT_REPRESENTATION = "22P02";
-
-const unauthorized = () =>
-  NextResponse.json({ error: "Phiên đăng nhập đã hết hạn" }, { status: 401 });
-const notFound = () => NextResponse.json({ error: "Không tìm thấy bài viết" }, { status: 404 });
-const misconfigured = () =>
-  NextResponse.json({ error: "Cấu hình Supabase chưa đầy đủ" }, { status: 500 });
 
 export async function PATCH(req: Request, { params }: Context) {
   if (!(await isAdmin())) return unauthorized();
@@ -31,12 +26,12 @@ export async function PATCH(req: Request, { params }: Context) {
     .select("id")
     .maybeSingle();
 
-  if (error?.code === INVALID_TEXT_REPRESENTATION) return notFound();
+  if (error?.code === INVALID_TEXT_REPRESENTATION) return notFound("bài viết");
   if (error) {
     console.error("update post failed", { id, error });
     return NextResponse.json({ error: "Không lưu được bài viết" }, { status: 500 });
   }
-  if (!data) return notFound();
+  if (!data) return notFound("bài viết");
 
   console.info("admin updated post", { id });
   revalidatePath("/", "layout");
@@ -57,12 +52,12 @@ export async function DELETE(_req: Request, { params }: Context) {
     .select("id")
     .maybeSingle();
 
-  if (error?.code === INVALID_TEXT_REPRESENTATION) return notFound();
+  if (error?.code === INVALID_TEXT_REPRESENTATION) return notFound("bài viết");
   if (error) {
     console.error("delete post failed", { id, error });
     return NextResponse.json({ error: "Không xóa được bài viết" }, { status: 500 });
   }
-  if (!data) return notFound();
+  if (!data) return notFound("bài viết");
 
   console.info("admin deleted post", { id });
   revalidatePath("/", "layout");

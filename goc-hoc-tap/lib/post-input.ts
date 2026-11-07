@@ -5,6 +5,9 @@ export type PostInput = {
   created_at?: string;
 };
 
+/** Dưới giới hạn thân request khoảng 4,5MB của Vercel, để lỗi quá cỡ luôn do app báo. */
+export const MAX_IMAGE_BYTES = 4 * 1024 * 1024;
+
 const MAX_TITLE = 200;
 const MAX_TAG = 50;
 const MAX_BODY = 200_000;

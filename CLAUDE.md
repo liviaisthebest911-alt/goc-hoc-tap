@@ -16,7 +16,7 @@ npm run build
 npm run lint
 ```
 
-There is no test framework or test script. `tsc` is not wired to a script; use `npx tsc --noEmit` for a type check.
+`npm test` runs `scripts/*.test.mjs` with Node's built-in test runner; there is no test framework. `tsc` is not wired to a script; use `npx tsc --noEmit` for a type check.
 
 ## Next.js version
 
@@ -34,12 +34,14 @@ This is Next 16.4 with React 19.3, and it has breaking changes from what you may
 
 ## Architecture
 
-A personal blog and portfolio, branded OJM. The UI text is mostly Vietnamese. Posts live in a Supabase `posts` table defined in `supabase/schema.sql`. `created_at` is the publish date and is editable; RLS lets the anon key read only, so that file must be applied for the data to be protected.
+A personal blog and portfolio, branded OJM. The UI text is mostly Vietnamese. Posts and stories live in the Supabase tables `posts`, `books` and `book_chapters`, defined in `supabase/schema.sql`. `created_at` is the publish date and is editable; RLS and table grants let the anon key read only, so that file must be applied for the data to be protected.
 
 - **Reads** happen in server components through the anon client in `lib/supabase.ts` and the helpers in `lib/posts.ts`, with `revalidate = 60`. Query errors throw to `app/error.tsx`, so an outage is not shown as an empty blog.
-- **Writes** go through `app/api/posts` (`POST`) and `app/api/posts/[id]` (`PATCH`, `DELETE`). Each handler checks `isAdmin()`, validates with `lib/post-input.ts`, writes with the service-role client from `lib/supabase-admin.ts`, then calls `revalidatePath("/", "layout")` so changes appear at once.
+- **Writes** go through `app/api/posts` (`POST`) and `app/api/posts/[id]` (`PATCH`, `DELETE`). Each handler checks `isAdmin()`, validates with `lib/post-input.ts`, writes with the service-role client from `lib/supabase-admin.ts`, then calls `revalidatePath("/", "layout")` so changes appear at once. `app/api/books` and `app/api/uploads` (public `post-images` bucket) follow the same pattern.
 - **Auth** is in `lib/auth.ts`: one shared passcode, exchanged at `app/api/admin/session` for an HMAC-signed httpOnly cookie with a 12-hour hard expiry. There is no session table, so logout clears only that browser's cookie. Pages under `/admin` and `/write` call `requireAdmin()` individually. Do not read cookies in the root layout or `Header`, because that would turn every public page dynamic and lose ISR.
+- **Drafts:** `PostEditor` and `ChapterEditor` autosave to localStorage through `lib/drafts.ts` and `lib/use-draft.ts`, keyed per post and per chapter. A draft is cleared after the server confirms a save, and all drafts are cleared after the server confirms a logout. Two limits are accepted: the Back button shows no warning, and two tabs on the same draft overwrite each other.
+- **Reading shelf:** `/shelf`, `data/shelf.ts`, `data/moments.ts` and `data/quotes.ts` are file-based. The home page "Đang học" line comes only from `learning` in `data/moments.ts`. "Liu's Book" (`/books`) means stories Liu writes.
 - **Markdown** is rendered by `components/Markdown.tsx` in the post page and the editor preview.
 - **Topics** are the free-text `tag` column. `/topics/[tag]` lists a topic and `listTopics` derives the list from the loaded posts.
 
-**Styling** is hand-written CSS in `app/globals.css`, using class names and `:root` color tokens. Tailwind is listed in `package.json` but is not imported or configured, so utility classes do nothing. Fonts come from `next/font` in `app/layout.tsx` as CSS variables. Dates are formatted in `Asia/Ho_Chi_Minh` through `lib/utils.ts`.
+**Styling** is hand-written CSS in `app/globals.css`, using class names and `:root` color tokens. There is no Tailwind. Fonts come from `next/font` in `app/layout.tsx` as CSS variables. Dates are formatted in `Asia/Ho_Chi_Minh` through `lib/utils.ts`.

@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { MarkChapterRead } from "@/components/BookProgress";
 import Markdown from "@/components/Markdown";
+import ReadingProgress from "@/components/ReadingProgress";
 import { getBook, listChapters } from "@/lib/books";
 import { excerpt } from "@/lib/utils";
 
@@ -61,13 +63,15 @@ export default async function ChapterPage(props: Props) {
 
   return (
     <article className="lib lib-read">
+      <ReadingProgress />
+      <MarkChapterRead bookId={book.id} chapterId={chapter.id} />
       <Link href={`/books/${book.id}`} className="lib-back">
         <ChevronLeft size={16} strokeWidth={1.5} /> {book.title}
       </Link>
 
       <header className="lib-chapter-head">
-        <p className="lib-kicker">Chương {index + 1} / {chapters.length}</p>
         <h1>{chapter.title}</h1>
+        <p className="lib-chapter-no">Chương {index + 1} / {chapters.length}</p>
       </header>
 
       <Markdown>{chapter.content || "*Chương này chưa có nội dung.*"}</Markdown>

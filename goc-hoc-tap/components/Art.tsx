@@ -56,23 +56,19 @@ export function Violin({ className }: Props) {
   );
 }
 
-const WHITE = 7;
+const WHITE = 8;
 const KEY_W = 44;
 const BLACK_AFTER = [0, 1, 3, 4, 5];
 
-export function PianoKeys({ className }: Props) {
+export function PianoKeys({ className, active = -1 }: Props & { active?: number }) {
   return (
-    <svg className={className} viewBox="0 0 320 130" aria-hidden="true">
-      <g {...base} strokeWidth={1.4}>
+    <svg className={className} viewBox="0 0 360 130" aria-hidden="true">
+      <g {...base} strokeWidth={2}>
         {Array.from({ length: WHITE }, (_, i) => (
-          <g key={i} className="key">
-            <rect x={6 + i * KEY_W} y={8} width={KEY_W - 3} height={112} rx={5} />
-          </g>
+          <rect key={i} className={i === active ? "key-on" : undefined} x={6 + i * KEY_W} y={8} width={KEY_W - 3} height={112} rx={5} />
         ))}
         {BLACK_AFTER.map((i) => (
-          <g key={i} className="key black">
-            <rect x={6 + (i + 1) * KEY_W - 15} y={8} width={25} height={68} rx={3} />
-          </g>
+          <rect key={i} x={6 + (i + 1) * KEY_W - 15} y={8} width={25} height={68} rx={3} fill="currentColor" />
         ))}
       </g>
     </svg>
@@ -81,12 +77,13 @@ export function PianoKeys({ className }: Props) {
 
 /**
  * Khuông nhạc mà nốt nhạc là bit: nốt đặc = 1, nốt rỗng = 0.
- * Dãy bit nằm ngay dưới khuông để nhìn ra "bản nhạc" cũng là dữ liệu.
+ * Dãy bit dưới khuông là chữ "Li" ở dạng nhị phân, nên "bản nhạc" cũng là dữ liệu thật.
  */
-const BITS = "0101101001101011";
+const BITS = [..."Li"].map((ch) => ch.charCodeAt(0).toString(2).padStart(8, "0")).join("");
+export const BIT_COUNT = BITS.length;
 const NOTE_Y = [57, 52, 47, 42, 37, 32];
 
-export function HeroScore({ className }: Props) {
+export function HeroScore({ className, active = -1 }: Props & { active?: number }) {
   return (
     <svg className={className} viewBox="0 0 1000 100" aria-hidden="true">
       <g {...base} strokeWidth={1}>
@@ -105,7 +102,7 @@ export function HeroScore({ className }: Props) {
         const y = NOTE_Y[(i * 5 + (i % 3)) % NOTE_Y.length];
         const up = y >= 42;
         return (
-          <g key={i} className="score-note" style={{ animationDelay: `${0.5 + i * 0.07}s` }}>
+          <g key={i} className={`score-note${i === active ? " on" : ""}`} style={{ animationDelay: `${0.5 + i * 0.07}s` }}>
             <g {...base} strokeWidth={1.4}>
               <path d={up ? `M${x + 6} ${y - 1}V${y - 30}` : `M${x - 6} ${y + 1}V${y + 30}`} />
               <ellipse
@@ -133,43 +130,6 @@ export function TrebleClef({ className }: Props) {
         <path d="M22 6c6 8 2 14-4 20" />
         <path d="M21 28v62" />
         <ellipse cx="17" cy="90" rx="5" ry="3.6" transform="rotate(-20 17 90)" />
-      </g>
-    </svg>
-  );
-}
-
-export function Star({ className }: Props) {
-  return (
-    <svg className={className} viewBox="0 0 40 40" aria-hidden="true">
-      <g {...base} strokeWidth={1.4}>
-        <path d="M20 4l4.4 11.4 12.2.9-9.4 7.8 3 11.9L20 29l-10.2 7 3-11.9-9.4-7.8 12.2-.9z" />
-        <path d="M20 10l2.6 6.4" opacity=".5" />
-      </g>
-    </svg>
-  );
-}
-
-export function Book({ className }: Props) {
-  return (
-    <svg className={className} viewBox="0 0 64 52" aria-hidden="true">
-      <g {...base} strokeWidth={1.4}>
-        <path d="M32 12C24 6 14 6 5 9v34c9-3 19-3 27 3 8-6 18-6 27-3V9c-9-3-19-3-27 3z" />
-        <path d="M32 12v34" />
-        <path d="M11 17c5-1.5 10-1 15 1.5M11 25c5-1.5 10-1 15 1.5M11 33c5-1.5 10-1 15 1.5" opacity=".5" />
-        <path d="M38 18.5c5-2.5 10-3 15-1.5M38 26.5c5-2.5 10-3 15-1.5" opacity=".5" />
-      </g>
-    </svg>
-  );
-}
-
-export function Notes({ className }: Props) {
-  return (
-    <svg className={className} viewBox="0 0 48 56" aria-hidden="true">
-      <g {...base} strokeWidth={1.5}>
-        <ellipse cx="13" cy="44" rx="7" ry="5" transform="rotate(-20 13 44)" fill="currentColor" fillOpacity=".15" />
-        <ellipse cx="36" cy="38" rx="7" ry="5" transform="rotate(-20 36 38)" fill="currentColor" fillOpacity=".15" />
-        <path d="M19.5 42V10l23-5v32" />
-        <path d="M19.5 18l23-5" />
       </g>
     </svg>
   );

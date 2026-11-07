@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import { Fraunces, JetBrains_Mono, Newsreader } from "next/font/google";
+import { JetBrains_Mono, Literata, Noto_Serif_Display } from "next/font/google";
 import Link from "next/link";
+import BackToTop from "../components/BackToTop";
 import CursorFX from "../components/CursorFX";
 import Header from "../components/Header";
 import "./globals.css";
 
-const display = Fraunces({
+const display = Noto_Serif_Display({
   subsets: ["latin", "vietnamese"],
-  axes: ["opsz", "SOFT"],
+  style: ["normal", "italic"],
   variable: "--font-display",
 });
-const body = Newsreader({
+const body = Literata({
   subsets: ["latin", "vietnamese"],
   style: ["normal", "italic"],
   variable: "--font-body",
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="vi"
+      data-scroll-behavior="smooth"
       className={`${display.variable} ${body.variable} ${mono.variable}`}
     >
       <body>
@@ -37,10 +39,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="wrap">{children}</main>
         <footer className="site-footer">
           <div className="wrap">
-            <span>Góc học tập của OJM, viết chậm, học kỹ.</span>
-            <Link href="/admin">Quản trị</Link>
+            <p className="footer-line">Viết chậm, học kỹ.</p>
+            <nav aria-label="Chân trang">
+              <Link href="/#bai-viet">Góc học tập</Link>
+              <Link href="/books">Liu&apos;s Book</Link>
+              <Link href="/shelf">Kệ sách</Link>
+              <Link href="/admin">Quản trị</Link>
+            </nav>
           </div>
         </footer>
+        <BackToTop />
       </body>
     </html>
   );

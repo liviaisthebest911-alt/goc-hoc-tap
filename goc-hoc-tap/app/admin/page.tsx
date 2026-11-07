@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BookOpen, PenLine } from "lucide-react";
-import DeletePostButton from "@/components/DeletePostButton";
+import ConfirmDeleteButton from "@/components/ConfirmDeleteButton";
 import LogoutButton from "@/components/LogoutButton";
 import { requireAdmin } from "@/lib/auth";
 import { listPosts } from "@/lib/posts";
@@ -42,7 +42,10 @@ export default async function AdminPage() {
               </div>
               <div className="admin-actions">
                 <Link href={`/write/${post.id}`}>Sửa</Link>
-                <DeletePostButton id={post.id} title={post.title} />
+                <ConfirmDeleteButton
+                  url={`/api/posts/${encodeURIComponent(post.id)}`}
+                  confirmText={`Xóa vĩnh viễn bài "${post.title}"?`}
+                />
               </div>
             </li>
           ))}

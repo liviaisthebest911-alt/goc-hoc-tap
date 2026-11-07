@@ -1,10 +1,14 @@
 "use client";
 
-import { useState, type ClipboardEvent, type FormEvent } from "react";
+import { useMemo, useState, type ClipboardEvent, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Eye, PenLine, Send } from "lucide-react";
+import DraftNotice from "@/components/DraftNotice";
 import Markdown from "@/components/Markdown";
+import { isPostDraft, postDraftKey, type PostDraft } from "@/lib/drafts";
+import { MAX_IMAGE_BYTES } from "@/lib/post-input";
+import { useAutosave, useHydrated, useRestoredDraft } from "@/lib/use-draft";
 import { fmtDate, readMinutes } from "@/lib/utils";
 import type { Post } from "@/lib/posts";
 
@@ -14,12 +18,27 @@ type Props = {
   topics: string[];
 };
 
-export default function PostEditor({ post, initialDate, topics }: Props) {
+/* Ảnh đang tải dở lúc nháp được lưu sẽ không bao giờ hoàn tất, nên bỏ chỗ giữ của nó. */
+const UNFINISHED_UPLOAD = /!\[Đang tải ảnh [^\]]*\]\(\)/g;
+
+export default function PostEditor(props: Props) {
+  return useHydrated() ? <Editor {...props} /> : <p className="muted">Đang mở trình soạn thảo…</p>;
+}
+
+function Editor({ post, initialDate, topics }: Props) {
   const router = useRouter();
-  const [title, setTitle] = useState(post?.title ?? "");
-  const [tag, setTag] = useState(post?.tag ?? "");
-  const [date, setDate] = useState(initialDate);
-  const [body, setBody] = useState(post?.body ?? "");
+  const key = postDraftKey(post?.id);
+  // date là null khi chưa đổi, để nháp bài mới mở lại hôm sau vẫn lấy ngày đăng mới.
+  const server = useMemo<PostDraft>(
+    () => ({ title: post?.title ?? "", tag: post?.tag ?? "", date: null, body: post?.body ?? "" }),
+    [post],
+  );
+  const [restored, setRestored] = useRestoredDraft(key, server, isPostDraft);
+  const [title, setTitle] = useState(restored?.data.title ?? server.title);
+  const [tag, setTag] = useState(restored?.data.tag ?? server.tag);
+  const [date, setDate] = useState(restored?.data.date ?? initialDate);
+  const [body, setBody] = useState(() => (restored?.data.body ?? server.body).replace(UNFINISHED_UPLOAD, ""));
+  const draft = useAutosave(key, server, { title, tag, date: date === initialDate ? null : date, body });
   const [preview, setPreview] = useState(false);
   const [error, setError] = useState("");
   const [sessionExpired, setSessionExpired] = useState(false);
@@ -32,6 +51,10 @@ export default function PostEditor({ post, initialDate, topics }: Props) {
     if (files.length === 0) return;
     event.preventDefault();
     setError("");
+    if (files.some((file) => file.size > MAX_IMAGE_BYTES)) {
+      setError("Ảnh quá lớn (tối đa 4MB)");
+      return;
+    }
 
     const el = event.currentTarget;
     const start = el.selectionStart;
@@ -87,6 +110,7 @@ export default function PostEditor({ post, initialDate, topics }: Props) {
       });
       const data = await res.json().catch(() => null);
       if (res.ok) {
+        draft.finish();
         router.push(post ? `/posts/${data.id}` : "/");
         router.refresh();
         return;
@@ -99,8 +123,27 @@ export default function PostEditor({ post, initialDate, topics }: Props) {
     setBusy(false);
   }
 
+  function discardDraft() {
+    draft.discard();
+    setRestored(null);
+    setTitle(server.title);
+    setTag(server.tag);
+    setDate(initialDate);
+    setBody(server.body);
+  }
+
   return (
     <form className="form" onSubmit={save}>
+      <DraftNotice
+        restored={restored}
+        saved={draft.saved}
+        dirty={draft.dirty}
+        otherTab={draft.otherTab}
+        existing={!!post}
+        onDiscard={discardDraft}
+      />
+      {/* Khóa ô nhập khi đang lưu: chữ gõ thêm lúc này sẽ không nằm trong bản được gửi đi. */}
+      <fieldset className="form-fields" disabled={busy}>
       <label>
         Tiêu đề
         <input required maxLength={200} value={title} onChange={(e) => setTitle(e.target.value)} />
@@ -127,8 +170,7 @@ export default function PostEditor({ post, initialDate, topics }: Props) {
       </div>
 
       {preview ? (
-        <div className="preview">
-          <p className="eyebrow">Xem trước</p>
+        <div className="preview" role="region" aria-label="Xem trước">
           <div className="meta">
             {tag.trim() && <span className="tag">{tag.trim()}</span>}
             {date && <span>{fmtDate(`${date}T12:00:00+07:00`)}</span>}
@@ -152,6 +194,8 @@ export default function PostEditor({ post, initialDate, topics }: Props) {
           </span>
         </label>
       )}
+
+      </fieldset>
 
       {error && (
         <p className="error" role="alert">

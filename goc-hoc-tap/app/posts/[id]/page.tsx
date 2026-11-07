@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
 import Markdown from "@/components/Markdown";
+import ReadingProgress from "@/components/ReadingProgress";
 import { getPost } from "@/lib/posts";
 import { excerpt, fmtDate, readMinutes, topicHref } from "@/lib/utils";
 
@@ -23,6 +24,7 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <article className="article">
+      <ReadingProgress />
       <Link href="/#bai-viet" className="back">
         <ChevronLeft size={16} strokeWidth={1.5} /> Về danh sách
       </Link>

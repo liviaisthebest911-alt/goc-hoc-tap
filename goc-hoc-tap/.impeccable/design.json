@@ -1,0 +1,511 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-06T14:46:57Z",
+  "title": "Design System: OJM",
+  "extensions": {
+    "colorMeta": {
+      "rose-ink": {
+        "role": "primary",
+        "displayName": "Peony Wine",
+        "canonical": "#8F2549",
+        "tonalRamp": [
+          "#1D0008",
+          "#48011D",
+          "#731337",
+          "#9B3253",
+          "#C05472",
+          "#E07A94",
+          "#FDA8BB",
+          "#FFE8EC"
+        ]
+      },
+      "rose": {
+        "role": "secondary",
+        "displayName": "Dusty Rose",
+        "canonical": "#D9829F",
+        "tonalRamp": [
+          "#1D000B",
+          "#420C23",
+          "#68233F",
+          "#8E3F5C",
+          "#B15F7C",
+          "#D1849D",
+          "#F0AFC3",
+          "#FFE7EE"
+        ]
+      },
+      "petal": {
+        "role": "secondary",
+        "displayName": "Petal",
+        "canonical": "#F2BCCF",
+        "tonalRamp": [
+          "#17050C",
+          "#371925",
+          "#593241",
+          "#7B4E5F",
+          "#9D6D7F",
+          "#BD8FA0",
+          "#DFB8C5",
+          "#FFE7EF"
+        ]
+      },
+      "cloth-1": {
+        "role": "tertiary",
+        "displayName": "Cloth Wine",
+        "canonical": "#8F2549",
+        "tonalRamp": [
+          "#1D0008",
+          "#48011D",
+          "#731337",
+          "#9B3253",
+          "#C05472",
+          "#E07A94",
+          "#FDA8BB",
+          "#FFE8EC"
+        ]
+      },
+      "cloth-2": {
+        "role": "tertiary",
+        "displayName": "Cloth Plum",
+        "canonical": "#6A3B50",
+        "tonalRamp": [
+          "#17040D",
+          "#381827",
+          "#5A3043",
+          "#7D4C61",
+          "#9F6C81",
+          "#BF8EA2",
+          "#E0B7C7",
+          "#FFE7F0"
+        ]
+      },
+      "cloth-3": {
+        "role": "tertiary",
+        "displayName": "Cloth Petal",
+        "canonical": "#F2BCCF",
+        "tonalRamp": [
+          "#17050C",
+          "#371925",
+          "#593241",
+          "#7B4E5F",
+          "#9D6D7F",
+          "#BD8FA0",
+          "#DFB8C5",
+          "#FFE7EF"
+        ]
+      },
+      "cloth-4": {
+        "role": "tertiary",
+        "displayName": "Cloth Paper",
+        "canonical": "#FFF7FA",
+        "tonalRamp": [
+          "#11080C",
+          "#2D1F25",
+          "#4C3A41",
+          "#6C575F",
+          "#8C767F",
+          "#AD98A0",
+          "#D0BFC5",
+          "#F6EBEF"
+        ]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Pale Pink Ground",
+        "canonical": "#FCE9F0",
+        "tonalRamp": [
+          "#11080C",
+          "#2D1F25",
+          "#4C3A41",
+          "#6C575F",
+          "#8C767F",
+          "#AD98A0",
+          "#D0BFC5",
+          "#F6EBEF"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Pink-White Paper",
+        "canonical": "#FFF7FA",
+        "tonalRamp": [
+          "#11080C",
+          "#2D1F25",
+          "#4C3A41",
+          "#6C575F",
+          "#8C767F",
+          "#AD98A0",
+          "#D0BFC5",
+          "#F6EBEF"
+        ]
+      },
+      "pink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Blush",
+        "canonical": "#FBDFE9",
+        "tonalRamp": [
+          "#11080C",
+          "#2E1F25",
+          "#4D3941",
+          "#6D565F",
+          "#8E767E",
+          "#AE97A0",
+          "#D2BEC5",
+          "#F7EAEF"
+        ]
+      },
+      "pink-blush": {
+        "role": "neutral",
+        "displayName": "Deep Blush",
+        "canonical": "#F8D6E2",
+        "tonalRamp": [
+          "#13070C",
+          "#301E25",
+          "#503841",
+          "#71545F",
+          "#91747F",
+          "#B295A0",
+          "#D5BDC5",
+          "#FAEAEF"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Wine Ink",
+        "canonical": "#43182C",
+        "tonalRamp": [
+          "#17040C",
+          "#381826",
+          "#5A3042",
+          "#7D4C61",
+          "#9F6C80",
+          "#BF8EA1",
+          "#E0B7C7",
+          "#FFE7F0"
+        ]
+      },
+      "mute": {
+        "role": "neutral",
+        "displayName": "Muted Plum",
+        "canonical": "#6A3B50",
+        "tonalRamp": [
+          "#17040D",
+          "#381827",
+          "#5A3043",
+          "#7D4C61",
+          "#9F6C81",
+          "#BF8EA2",
+          "#E0B7C7",
+          "#FFE7F0"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline Pink",
+        "canonical": "#F2BCCF",
+        "tonalRamp": [
+          "#17050C",
+          "#371925",
+          "#593241",
+          "#7B4E5F",
+          "#9D6D7F",
+          "#BD8FA0",
+          "#DFB8C5",
+          "#FFE7EF"
+        ]
+      },
+      "field-line": {
+        "role": "neutral",
+        "displayName": "Field Line",
+        "canonical": "#A9607C",
+        "tonalRamp": [
+          "#1C010C",
+          "#3F1025",
+          "#642841",
+          "#89435F",
+          "#AC637F",
+          "#CC87A0",
+          "#EBB1C5",
+          "#FFE7EF"
+        ]
+      },
+      "danger": {
+        "role": "neutral",
+        "displayName": "Danger",
+        "canonical": "#A81E3C",
+        "tonalRamp": [
+          "#1E0004",
+          "#4A0113",
+          "#790625",
+          "#A81F3C",
+          "#CE485B",
+          "#EE727F",
+          "#FEAAAF",
+          "#FFE8E9"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The home masthead only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles on the home page."
+      },
+      "article-title": {
+        "displayName": "Article Title",
+        "purpose": "Post page titles."
+      },
+      "lead-title": {
+        "displayName": "Lead Title",
+        "purpose": "The featured story's title."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Story titles and other h3 headings, in Literata."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default text."
+      },
+      "reading": {
+        "displayName": "Reading",
+        "purpose": "Post and chapter bodies."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Dates, read times, and other metadata."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Code, binary, and keycaps only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow",
+        "value": "0 1px 2px rgba(67, 24, 44, .06), 0 10px 24px -14px rgba(67, 24, 44, .22)",
+        "purpose": "Paper at rest."
+      },
+      {
+        "name": "shadow-lift",
+        "value": "0 2px 4px rgba(67, 24, 44, .07), 0 20px 36px -18px rgba(67, 24, 44, .32)",
+        "purpose": "Top layers and hovered paper."
+      },
+      {
+        "name": "shelf-cast",
+        "value": "0 16px 18px -14px rgba(67, 24, 44, .4)",
+        "purpose": "Under the shelf board only."
+      },
+      {
+        "name": "book-hinge",
+        "value": "inset 7px 0 0 rgba(67, 24, 44, .18)",
+        "purpose": "The hinge band on a book cover's spine; never used outside covers."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "The shared ease for state changes and entrances."
+      },
+      {
+        "name": "state-change",
+        "value": ".2s to .45s",
+        "purpose": "Hover, press, and selection changes."
+      },
+      {
+        "name": "entrance",
+        "value": ".5s to .9s",
+        "purpose": "One-time entrances on load or on scrolling into view."
+      },
+      {
+        "name": "piano-key",
+        "value": ".08s to .12s",
+        "purpose": "Immediate key response."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet",
+        "value": "1080px"
+      },
+      {
+        "name": "mobile",
+        "value": "720px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main action: a Wine Ink pill that turns Peony Wine and rises 1px.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Explore my journey</a>",
+      "css": ".ds-btn-primary{display:inline-flex;gap:8px;align-items:center;min-height:46px;padding:10px 24px;border:1px solid var(--ink);border-radius:999px;background:var(--ink);color:var(--card);font-family:var(--reading);font-size:16px;text-decoration:none;transition:background .25s,border-color .25s,color .25s,transform .25s var(--ease)}.ds-btn-primary:hover{background:var(--rose-ink);border-color:var(--rose-ink);color:var(--card);transform:translateY(-1px)}.ds-btn-primary:focus-visible{outline:2px solid var(--rose-ink);outline-offset:3px}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "The secondary action, sitting beside a primary or in a tool row.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Read articles</a>",
+      "css": ".ds-btn-ghost{display:inline-flex;gap:8px;align-items:center;min-height:46px;padding:10px 24px;border:1px solid var(--rose);border-radius:999px;background:transparent;color:var(--ink);font-family:var(--reading);font-size:16px;text-decoration:none;transition:background .25s,border-color .25s,transform .25s var(--ease)}.ds-btn-ghost:hover{background:var(--pink-blush);border-color:var(--rose-ink);transform:translateY(-1px)}.ds-btn-ghost:focus-visible{outline:2px solid var(--rose-ink);outline-offset:3px}"
+    },
+    {
+      "name": "Filter Chips",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Topic filters with computed counts; the selected chip turns Wine Ink.",
+      "html": "<div class=\"ds-chips\"><button class=\"ds-chip\" aria-pressed=\"true\">Tất cả <span>2</span></button><button class=\"ds-chip\" aria-pressed=\"false\">DSA <span>2</span></button></div>",
+      "css": ".ds-chips{display:flex;flex-wrap:wrap;gap:8px}.ds-chip{min-height:40px;padding:4px 16px;border:1px solid var(--rose);border-radius:999px;background:none;color:var(--ink);font-family:var(--reading);font-size:15px;cursor:pointer;transition:background .2s,color .2s}.ds-chip span{margin-left:3px;font-size:13px;font-variant-numeric:tabular-nums}.ds-chip:hover{background:var(--pink-blush)}.ds-chip[aria-pressed=\"true\"]{border-color:var(--ink);background:var(--ink);color:var(--card)}.ds-chip:focus-visible{outline:2px solid var(--rose-ink);outline-offset:3px}"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "A topic label in story and post metadata.",
+      "html": "<a class=\"ds-tag\" href=\"#\">DSA</a>",
+      "css": ".ds-tag{padding:3px 12px;border-radius:999px;background:var(--petal);color:var(--ink);font-family:var(--reading);font-size:14.5px;text-decoration:none}.ds-tag:hover{background:var(--ink);color:var(--card)}.ds-tag:focus-visible{outline:2px solid var(--rose-ink);outline-offset:3px}"
+    },
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "search-field",
+      "description": "The pill search field for the learning hub.",
+      "html": "<label class=\"ds-search\"><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m21 21-4.34-4.34\"/><circle cx=\"11\" cy=\"11\" r=\"8\"/></svg><input type=\"search\" placeholder=\"Tìm bài viết\" aria-label=\"Tìm bài viết\"></label>",
+      "css": ".ds-search{display:flex;gap:8px;align-items:center;min-height:46px;max-width:300px;padding:0 16px;border:1px solid var(--field-line);border-radius:999px;background:var(--card);color:var(--mute)}.ds-search:focus-within{outline:2px solid var(--rose-ink);outline-offset:1px}.ds-search input{flex:1;min-width:0;border:0;outline:0;background:none;color:var(--ink);font-family:var(--reading);font-size:16px}.ds-search input::placeholder{color:var(--mute);opacity:1}"
+    },
+    {
+      "name": "Site Navigation",
+      "kind": "nav",
+      "refersTo": "",
+      "description": "Sticky header links with a wiping Peony Wine underline.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Chính\"><a href=\"#\" aria-current=\"page\">Kệ sách</a><a href=\"#\">Liu's Book</a><a href=\"#\">Music Corner</a></nav>",
+      "css": ".ds-nav{display:flex;gap:34px;align-items:center;font-family:var(--reading);font-size:16px}.ds-nav a{position:relative;padding:6px 0;color:var(--ink);text-decoration:none}.ds-nav a::after{content:\"\";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--rose-ink);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}.ds-nav a:hover::after,.ds-nav a[aria-current]::after{transform:scaleX(1)}.ds-nav a:focus-visible{outline:2px solid var(--rose-ink);outline-offset:3px}"
+    },
+    {
+      "name": "Paper Card",
+      "kind": "card",
+      "refersTo": "paper-card",
+      "description": "Pink-white paper with the Paper shadow, lifting on hover.",
+      "html": "<article class=\"ds-paper-card\"><p class=\"ds-paper-date\">6 tháng 11, 2026</p><h3><a href=\"#\">BFS và DFS trong toán rời rạc</a></h3><p class=\"ds-paper-excerpt\">Hai thuật toán nền tảng của lý thuyết đồ thị.</p></article>",
+      "css": ".ds-paper-card{max-width:420px;padding:26px 28px 24px;border-radius:6px;background:var(--card);color:var(--ink);box-shadow:var(--shadow);font-family:var(--reading);transition:box-shadow .3s ease}.ds-paper-card:hover{box-shadow:var(--shadow-lift)}.ds-paper-date{margin:0 0 8px;font-size:14px;line-height:1.2;color:var(--mute)}.ds-paper-card h3{margin:0;font-size:25px;font-weight:600;line-height:1.12}.ds-paper-card h3 a{color:var(--ink);text-decoration:none}.ds-paper-card:hover h3 a{color:var(--rose-ink)}.ds-paper-excerpt{margin:10px 0 0;color:var(--mute)}"
+    },
+    {
+      "name": "Now Playing",
+      "kind": "custom",
+      "refersTo": "now-playing",
+      "description": "The tilted Wine Ink panel with a live piano strip and the staff playback button.",
+      "html": "<section class=\"ds-np\" aria-label=\"Now Playing\"><svg class=\"ds-np-keys\" viewBox=\"0 0 320 130\" aria-hidden=\"true\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><rect x=\"6\" y=\"8\" width=\"41\" height=\"112\" rx=\"5\"/><rect x=\"50\" y=\"8\" width=\"41\" height=\"112\" rx=\"5\"/><rect x=\"94\" y=\"8\" width=\"41\" height=\"112\" rx=\"5\" class=\"ds-key-on\"/><rect x=\"138\" y=\"8\" width=\"41\" height=\"112\" rx=\"5\"/><rect x=\"182\" y=\"8\" width=\"41\" height=\"112\" rx=\"5\"/><rect x=\"226\" y=\"8\" width=\"41\" height=\"112\" rx=\"5\"/><rect x=\"270\" y=\"8\" width=\"41\" height=\"112\" rx=\"5\"/><rect x=\"35\" y=\"8\" width=\"25\" height=\"68\" rx=\"3\" fill=\"currentColor\"/><rect x=\"79\" y=\"8\" width=\"25\" height=\"68\" rx=\"3\" fill=\"currentColor\"/><rect x=\"167\" y=\"8\" width=\"25\" height=\"68\" rx=\"3\" fill=\"currentColor\"/><rect x=\"211\" y=\"8\" width=\"25\" height=\"68\" rx=\"3\" fill=\"currentColor\"/><rect x=\"255\" y=\"8\" width=\"25\" height=\"68\" rx=\"3\" fill=\"currentColor\"/></g></svg><h2>Now Playing</h2><p>Đang yên lặng</p><button type=\"button\" class=\"ds-np-btn\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 5a2 2 0 0 1 3-1.7l12 7a2 2 0 0 1 0 3.4l-12 7A2 2 0 0 1 5 19z\"/></svg> Nghe khuông nhạc</button></section>",
+      "css": ".ds-np{position:relative;max-width:280px;padding:18px 20px 20px;overflow:hidden;border-radius:6px;background:var(--ink);color:var(--card);box-shadow:var(--shadow-lift);transform:rotate(-1.2deg);font-family:var(--reading)}.ds-np-keys{display:block;width:calc(100% + 40px);margin:-18px -20px 12px;color:var(--rose);background:var(--card)}.ds-key-on{fill:var(--rose-ink);stroke:var(--rose-ink)}.ds-np h2{margin:0;font-size:15px;font-weight:400;font-style:italic;color:var(--petal)}.ds-np p{min-height:2.5em;margin:6px 0 12px;font-size:19px;line-height:1.25}.ds-np-btn{display:inline-flex;gap:8px;align-items:center;min-height:40px;padding:6px 16px;border:1px solid var(--rose);border-radius:999px;background:none;color:var(--card);font-family:var(--reading);font-size:15px;cursor:pointer;transition:background .2s,color .2s}.ds-np-btn:hover{background:var(--card);color:var(--ink)}.ds-np-btn:focus-visible{outline:2px solid var(--card);outline-offset:3px}"
+    },
+    {
+      "name": "Book Cover",
+      "kind": "custom",
+      "refersTo": "book-cover",
+      "description": "A cloth-bound story cover with a small staff, rising 10px on hover. The title is clamped to 5 lines so the chapter count always shows.",
+      "html": "<a class=\"ds-cover\" href=\"#\"><span class=\"ds-cover-title\">Hoa sứ cài tóc</span><span class=\"ds-cover-rule\" aria-hidden=\"true\"></span><span class=\"ds-cover-foot\">4 chương</span></a>",
+      "css": ".ds-cover{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:10px;width:190px;aspect-ratio:2/3;overflow:hidden;padding:22px 18px 14px 28px;border-radius:3px 7px 7px 3px;background-color:var(--cloth-1);background-image:url(\"/textures/cloth.png\");background-size:256px;color:var(--card);box-shadow:inset 7px 0 0 rgba(67,24,44,.18),var(--shadow);font-family:var(--reading);text-decoration:none;transition:transform .45s var(--ease),box-shadow .45s var(--ease)}.ds-cover:hover{transform:translateY(-10px);box-shadow:inset 7px 0 0 rgba(67,24,44,.18),var(--shadow-lift)}.ds-cover::before{content:\"\";position:absolute;inset:8px 8px 8px 15px;border:1px solid currentColor;border-radius:2px;opacity:.35;pointer-events:none}.ds-cover-title{font-size:21px;font-weight:600;line-height:1.22}.ds-cover-rule{flex:1;margin-block:6px;background:repeating-linear-gradient(to bottom,currentColor 0 1px,transparent 1px 6px) center/100% 25px no-repeat;opacity:.4}.ds-cover-foot{font-size:14px}.ds-cover:focus-visible{outline:2px solid var(--rose-ink);outline-offset:3px}"
+    },
+    {
+      "name": "Title Staff",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "The five-line staff written from a title, one note per word, for stories without an image.",
+      "html": "<div class=\"ds-title-staff\"><svg viewBox=\"0 0 320 96\" aria-hidden=\"true\"><g stroke=\"currentColor\" opacity=\".5\"><path d=\"M0 20H320\"/><path d=\"M0 32H320\"/><path d=\"M0 44H320\"/><path d=\"M0 56H320\"/><path d=\"M0 68H320\"/></g><g><path d=\"M32 68V38\" stroke=\"currentColor\" stroke-width=\"1.6\"/><ellipse cx=\"26\" cy=\"68\" rx=\"7\" ry=\"5\" fill=\"currentColor\" transform=\"rotate(-20 26 68)\"/></g><g><path d=\"M101 56V26\" stroke=\"currentColor\" stroke-width=\"1.6\"/><ellipse cx=\"95\" cy=\"56\" rx=\"7\" ry=\"5\" fill=\"currentColor\" transform=\"rotate(-20 95 56)\"/></g><g><path d=\"M170 44V14\" stroke=\"currentColor\" stroke-width=\"1.6\"/><ellipse cx=\"164\" cy=\"44\" rx=\"7\" ry=\"5\" fill=\"currentColor\" transform=\"rotate(-20 164 44)\"/></g><g><path d=\"M239 62V32\" stroke=\"currentColor\" stroke-width=\"1.6\"/><ellipse cx=\"233\" cy=\"62\" rx=\"7\" ry=\"5\" fill=\"currentColor\" transform=\"rotate(-20 233 62)\"/></g><g><path d=\"M308 50V20\" stroke=\"currentColor\" stroke-width=\"1.6\"/><ellipse cx=\"302\" cy=\"50\" rx=\"7\" ry=\"5\" fill=\"currentColor\" transform=\"rotate(-20 302 50)\"/></g></svg></div>",
+      "css": ".ds-title-staff{max-width:360px;padding:16px 20px;border-radius:6px;background:var(--petal);color:var(--rose-ink)}.ds-title-staff svg{display:block;width:100%;height:auto;overflow:visible}"
+    }
+  ],
+  "narrative": {
+    "northStar": "OJM",
+    "overview": "OJM reads as one issue of a personal magazine, made from a single person's real work. Its staff is literal: music staff lines are the recurring rule, and the notes on them stand for published posts, stories, and the bits of the name Li. The ground is pale pink, the paper is pink-white, and the type is high-contrast serif in wine ink.\n\nDensity is editorial. Large serif headings hold the space, and small Literata carries the detail. Public pages are composed asymmetrically, with paper layered and slightly rotated as if placed by hand. Reading pages drop all of that for one quiet column.\n\nThe world refuses a dark theme, dark brown or ivory as the main colour, loud gradients, heavy glassmorphism, and continuous animation.",
+    "keyCharacteristics": [
+      "Pale pink ground, pink-white paper, wine ink, and one peony-wine accent.",
+      "High-contrast display serif at large sizes, with Literata for everything small or read at length.",
+      "Five-line staffs as rules, dividers, covers, and timeline.",
+      "Rotated paper layers with soft wine-tinted shadows.",
+      "Book-cloth covers on a shelf.",
+      "Motion that answers an event and then stops."
+    ],
+    "rules": [
+      {
+        "name": "The Ornament Rose Rule",
+        "body": "Dusty Rose never carries text someone has to read; it reaches only 2.36:1 on the ground. Ornament hidden from assistive technology, such as the `{ }` and `</>` marks, may use it.",
+        "section": "colors"
+      },
+      {
+        "name": "The Wine Panel Rule",
+        "body": "Wine Ink fills only small, deliberate objects, such as buttons, the selected chip, the Now Playing panel, and the piano case. It never becomes a page or section ground, because OJM has no dark theme.",
+        "section": "colors"
+      },
+      {
+        "name": "The Shared Names Rule",
+        "body": "Token names such as `--pink-soft` and `--rose-ink` are shared with Admin through the one global stylesheet. Renaming a token changes Admin pages too, so a rename has to cover both.",
+        "section": "colors"
+      },
+      {
+        "name": "The Hairline Floor Rule",
+        "body": "Noto Serif Display is for sizes of about 28px and up only, because its hairlines drop out below that. Anything smaller is Literata, even when it is a heading.",
+        "section": "typography"
+      },
+      {
+        "name": "The Machine Voice Rule",
+        "body": "JetBrains Mono is only for code and binary. That covers code samples, Markdown source in the editor, bits, the `{ }` and `</>` marks, and keycaps, which name keyboard input. It never sets prose, labels, or metadata.",
+        "section": "typography"
+      },
+      {
+        "name": "The Staff Rule",
+        "body": "A staff is always five parallel, evenly spaced lines, whatever the scale: 6px spacing on covers and in the footer, 20px on the Moments timeline. A note on a staff always stands for something real: a bit, a word of a title, or a published item.",
+        "section": "layout"
+      },
+      {
+        "name": "The Placed Paper Rule",
+        "body": "Paper layers tilt by no more than 1.2deg; mascot stickers may tilt 4deg to 5deg. Layers overlap by small negative margins, so they read as stacked by hand.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Quiet Page Rule",
+        "body": "Post, chapter, Admin, and editor pages are flat. They carry no rotation or decoration in the reading or working area, and the cursor effect does not run on chapters, Admin, or the editor.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Stillness Rule",
+        "body": "There is no continuous animation. Every movement answers an event (load, scroll into view, hover, pointer movement, or playback) and then stops, and `prefers-reduced-motion` turns it off.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do use a five-line staff wherever a rule needs to feel like OJM.",
+      "Do keep Noto Serif Display at about 28px and up, and switch to Literata below that.",
+      "Do tie every note on a staff to a real bit, word, or published item.",
+      "Do keep paper tilt at 1.2deg or less, and use the Paper and Lift shadows rather than new ones.",
+      "Do cycle covers through the four cloth tokens, with the cloth overlay on top.",
+      "Do keep tap targets at 44px or more on small screens.",
+      "Do drop rotation and ornament on reading and Admin pages.",
+      "Do check Admin pages when changing a shared token."
+    ],
+    "donts": [
+      "Don't add a dark theme, or make dark brown or ivory the main colour.",
+      "Don't use loud gradients. Staff lines drawn with a hard-stop repeating gradient and the violin's faint body tint are part of the world.",
+      "Don't use heavy glassmorphism.",
+      "Don't add continuous animation, including idle loops, marquees, or autoplay.",
+      "Don't set readable text in Dusty Rose.",
+      "Don't use JetBrains Mono for prose, labels, or metadata.",
+      "Don't rename shared tokens such as `--pink-soft` or `--rose-ink` without updating Admin."
+    ],
+    "knownGaps": [
+      "About 56 fixed sizes sit outside the type ramp, in public pages and Admin.",
+      "Off-scale radii sit on covers, code, keys, the small sticker and round marks.",
+      "side-tab on .cover is a false positive: the band is the book hinge.",
+      ".brand is Display at 27px, accepted as about 28px.",
+      "Below 1080px the hero drops violin and code marks; at 390px the bit staff is cropped.",
+      "Hero staff notes light by beat, not pitch.",
+      "The native date-picker icon stays browser chrome at 70% opacity.",
+      "Browser Back has no leave warning; the draft is still saved."
+    ]
+  }
+}

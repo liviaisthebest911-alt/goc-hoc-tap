@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
+import BookProgress from "@/components/BookProgress";
 import { getBook, listChapters } from "@/lib/books";
 
 export const revalidate = 60;
@@ -27,16 +28,11 @@ export default async function BookPage({ params }: Props) {
 
       <header className="lib-head">
         <h1>{book.title}</h1>
-        <p className="lib-lead">{chapters.length} chương</p>
-        {chapters.length > 0 && (
-          <Link href={`/books/${book.id}/${chapters[0].id}`} className="lib-btn">
-            Đọc từ đầu
-          </Link>
-        )}
+        <BookProgress bookId={book.id} chapterIds={chapters.map((chapter) => chapter.id)} />
       </header>
 
       {chapters.length === 0 ? (
-        <p className="lib-empty">Truyện chưa có chương nào.</p>
+        <p className="empty">Truyện chưa có chương nào.</p>
       ) : (
         <ol className="lib-chapters">
           {chapters.map((chapter, index) => (
